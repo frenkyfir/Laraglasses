@@ -71,6 +71,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="d-inline-flex align-items-center d-block d-lg-none">
                     <a href="" class="btn px-0 ml-2">
                         <i class="fas fa-heart text-dark"></i>
@@ -80,14 +81,14 @@
                     <a href="" class="btn px-0 ml-2">
                         <i class="fas fa-shopping-cart text-dark"></i>
                         <span class="badge text-dark border border-dark rounded-circle"
-                            style="padding-bottom: 2px;">0</span>
+                            style="padding-bottom: 2px;">100</span>
                     </a>
                 </div>
             </div>
         </div>
         <div class="row align-items-center bg-light py-3 px-xl-5 d-none d-lg-flex">
             <div class="col-lg-4">
-                <a href="" class="text-decoration-none">
+                <a href="{{ url('/') }}" class="text-decoration-none">
                     <span class="h1 text-uppercase text-primary bg-dark px-2">Lara</span>
                     <span class="h1 text-uppercase text-dark bg-primary px-2 ml-n1">Glasses</span>
                 </a>
@@ -172,6 +173,9 @@
                             <a href="contact.html" class="nav-item nav-link">Contact</a>
                             <a href="{{ route('view_cart') }}" class="nav-item nav-link">Shooping Cart</a>
                         </div>
+                        @php
+                            $cart_array = cardArray();
+                        @endphp
                         <div class="navbar-nav ml-auto py-0 d-none d-lg-block">
                             <a href="" class="btn px-0">
                                 <i class="fas fa-heart text-primary"></i>
@@ -181,7 +185,7 @@
                             <a href="" class="btn px-0 ml-3">
                                 <i class="fas fa-shopping-cart text-primary"></i>
                                 <span class="badge text-secondary border border-secondary rounded-circle"
-                                    style="padding-bottom: 2px;">0</span>
+                                    style="padding-bottom: 2px;"><?= count($cart_array) ?></span>
                             </a>
                         </div>
                     </div>

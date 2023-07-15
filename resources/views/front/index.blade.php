@@ -173,10 +173,13 @@
                                 <span class="badge text-secondary border border-secondary rounded-circle"
                                     style="padding-bottom: 2px;">0</span>
                             </a>
-                            <a href="" class="btn px-0 ml-3">
+                            @php
+                                $cart_array = cardArray();
+                            @endphp
+                            <a href="{{ route('view_cart') }}" class="btn px-0 ml-3">
                                 <i class="fas fa-shopping-cart text-primary"></i>
                                 <span class="badge text-secondary border border-secondary rounded-circle"
-                                    style="padding-bottom: 2px;">0</span>
+                                    style="padding-bottom: 2px;"><?= count($cart_array) ?></span>
                             </a>
                         </div>
                     </div>
@@ -482,7 +485,7 @@
                         <div class="text-center py-4">
                             <a class="h6 text-decoration-none text-truncate" href="">{{ $item->name }}</a>
                             <div class="d-flex align-items-center justify-content-center mt-2">
-                                <h5>$123.00</h5>
+                                <h5>RP {{ number_format($item->price) }}</h5>
                                 <h6 class="text-muted ml-2"><del>$13.00</del></h6>
                             </div>
                             <div class="d-flex align-items-center justify-content-center mb-1">
