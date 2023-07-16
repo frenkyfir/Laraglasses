@@ -33,6 +33,7 @@ use App\Http\Controllers\Back\Permissions\PermissionsController;
 use App\Http\Controllers\back\Tbl_frame_category\Tbl_frame_categoryController;
 use App\Http\Controllers\front\FrontCartController;
 use App\Models\Tbl_product;
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -72,17 +73,18 @@ Route::get('/login', function () {
     return view('front.login');
 });
 
+Route::get('/logout', function () {
+    Auth::logout();
+    return redirect('/'); // Ganti '/login' dengan rute login aplikasi Anda
+})->name('logout.process');
+
 Route::get('/', [FrontLandingController::class, 'index'])->name('frontlanding');
 
 Route::get('/products', [Tbl_product::class, 'product_list'])->name('products');
 
 ##cart
 
-Route::post('/products/cart/add', [FrontCartController::class, 'add_cart'])->name('add_cart');
-Route::get('/products/cart/view', [FrontCartController::class, 'view_cart'])->name('view_cart');
-Route::post('/products/cart/update', [FrontCartController::class, 'update_cart'])->name('update-cart');
-Route::get('/products/cart/{id}/remove', [FrontCartController::class, 'remove_item'])->name('remove-item');
-Route::get('/products/cart/clear', [FrontCartController::class, 'clear_item'])->name('clear-item');
+
 
 
 Route::get('/crud', [CrudBuilderController::class, 'index'])->name('crud.index');
@@ -112,6 +114,12 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource("tbl_frame_category", Tbl_frame_categoryController::class);
     Route::resource("tbl_product", Tbl_productController::class);
     Route::resource("tbl_transaksi", Tbl_transaksiController::class);
+
+    Route::post('/products/cart/add', [FrontCartController::class, 'add_cart'])->name('add_cart');
+    Route::get('/products/cart/view', [FrontCartController::class, 'view_cart'])->name('view_cart');
+    Route::post('/products/cart/update', [FrontCartController::class, 'update_cart'])->name('update-cart');
+    Route::get('/products/cart/{id}/remove', [FrontCartController::class, 'remove_item'])->name('remove-item');
+    Route::get('/products/cart/clear', [FrontCartController::class, 'clear_item'])->name('clear-item');
 
 
 

@@ -32,21 +32,33 @@
         <div class="row bg-secondary py-1 px-xl-5">
             <div class="col-lg-6 d-none d-lg-block">
                 <div class="d-inline-flex align-items-center h-100">
-                    <a class="text-body mr-3" href="">About</a>
                     <a class="text-body mr-3" href="">Contact</a>
                     <a class="text-body mr-3" href="">Help</a>
                     <a class="text-body mr-3" href="">FAQs</a>
+                    <a class="text-body mr-3" href="">About</a>
+
                 </div>
             </div>
             <div class="col-lg-6 text-center text-lg-right">
                 <div class="d-inline-flex align-items-center">
                     <div class="btn-group">
-                        <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">My
-                            Account</button>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <button class="dropdown-item" type="button">Sign in</button>
-                            <button class="dropdown-item" type="button">Sign up</button>
-                        </div>
+                        @if (Auth::user() == true)
+                            <button type="button" class="btn btn-sm btn-light dropdown-toggle"
+                                data-toggle="dropdown">Hi {{ ucfirst(Auth::user()->name) }}</button>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                <button class="dropdown-item" type="button">My Profile</button>
+                                <a href="{{ url('logout') }}"> <button class="dropdown-item" type="button">Log
+                                        out</button></a>
+                            </div>
+                        @else
+                            <button type="button" class="btn btn-sm btn-light dropdown-toggle"
+                                data-toggle="dropdown">Login here</button>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                <a href="/login"><button class="dropdown-item" type="button">Sign In</button></a>
+                                <button class="dropdown-item" type="button">Sign Up</button>
+                            </div>
+                        @endif
+
                     </div>
                     <div class="btn-group mx-2">
                         <button type="button" class="btn btn-sm btn-light dropdown-toggle"

@@ -7,6 +7,8 @@ use App\Models\Tbl_frame_category;
 use App\Models\Tbl_product;
 use Illuminate\Http\Request;
 use Darryldecode\Cart\Facades\CartFacade as Cart;
+use Illuminate\Support\Facades\Auth;
+
 
 
 class FrontCartController extends Controller
@@ -16,6 +18,10 @@ class FrontCartController extends Controller
     {
         // $products_models = Products_models::all();
         // $category_models = Category_models::all();
+        $userID = auth()->user()->id;
+        // \Cart::session($userID)->add(array(
+
+        // ))
         Cart::add(
             array(
                 'id' => $request->id,
@@ -26,14 +32,14 @@ class FrontCartController extends Controller
                 'attributes' => array(
                     'image' => $request->image,
                     'description' => $request->description
-                )
+                ),
             )
         );
-        $cartItems = \Cart::getContent();
+        // $cartItems = \Cart::getContent();
         // dump($cartItems); 
 
-        $products_models = Tbl_product::all();
-        $category_models = Tbl_frame_category::all();
+        // $products_models = Tbl_product::all();
+        // $category_models = Tbl_frame_category::all();
         return back();
     }
 

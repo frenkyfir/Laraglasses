@@ -46,9 +46,9 @@ class LoginController extends Controller
     }
     protected function authenticated(Request $request, $user)
     {
-      
 
-      
+
+
         $email = ($request->email);
         #use this code for show value
         // $password = ($request->password);
@@ -71,23 +71,17 @@ class LoginController extends Controller
         // dd("test auth");
         if ($user->hasRole('Admin')) {
             return redirect('/dashboard');
-        } 
-        else if ($user->hasRole('admin01')) {
-            return redirect('/dashboard');
-        }
-        else if ($user->hasRole('admin02')) {
+        } else if ($user->hasRole('Member')) {
+            return redirect('/');
+        } else if ($user->hasRole('admin02')) {
             return redirect('/dashboard');
         } else  if ($user->hasRole('member')) {
             $totalcart = Cart::getTotal();
             if ($totalcart == 0) {
                 return redirect('/member/board');
-            }
-            else
-            {
+            } else {
                 return redirect('/fcheckouts');
             }
-          
-            
         }
     }
 

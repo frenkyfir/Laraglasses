@@ -44,11 +44,23 @@
             <div class="col-lg-6 text-center text-lg-right">
                 <div class="d-inline-flex align-items-center">
                     <div class="btn-group">
-                        <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">My
-                            Account</button>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="/login">Sign in</a>
-                            <a class="dropdown-item" href="/register">Sign up</a>
+                        <div class="btn-group">
+                            @if (Auth::user() == true)
+                                <button type="button" class="btn btn-sm btn-light dropdown-toggle"
+                                    data-toggle="dropdown">Hi {{ ucfirst(Auth::user()->name) }}</button>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <button class="dropdown-item" type="button">My Profile</button>
+                                    <a href="{{ url('logout') }}"> <button class="dropdown-item" type="button">Log
+                                            out</button></a>
+                                </div>
+                            @else
+                                <button type="button" class="btn btn-sm btn-light dropdown-toggle"
+                                    data-toggle="dropdown">Login here</button>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <a href="/login"><button class="dropdown-item" type="button">Sign In</button></a>
+                                    <button class="dropdown-item" type="button">Sign Up</button>
+                                </div>
+                            @endif
 
                         </div>
                     </div>
@@ -160,8 +172,8 @@
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto py-0">
                             <a href="{{ '/' }}" class="nav-item nav-link active">Home</a>
-                            <a href="shop.html" class="nav-item nav-link">Jacket</a>
-                            <a href="detail.html" class="nav-item nav-link">Kaos</a>
+                            <a href="shop.html" class="nav-item nav-link">Frame</a>
+                            <a href="detail.html" class="nav-item nav-link">Glasses</a>
                             <div class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages <i
                                         class="fa fa-angle-down mt-1"></i></a>
